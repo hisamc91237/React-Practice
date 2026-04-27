@@ -4,6 +4,12 @@ import MovieList from "./MovieList";
 const Secondary = () => {
   const movies = useSelector((store) => store.movies);
 
+  const popularMovies = useSelector((store) => store.movies.popularMovies);
+
+  const trendingMovies = useSelector((store) => store.movies.trendingMovies);
+
+  const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
+
   if (!movies || !movies.nowPlayingMovies) return null;
 
   return (
@@ -13,19 +19,10 @@ const Secondary = () => {
           title={"Now Playing Movies"}
           movies={movies.nowPlayingMovies}
         />
-        {/* Mocking additional rows to demonstrate the scrollable UI */}
-        <MovieList
-          title={"Trending Now"}
-          movies={movies.nowPlayingMovies}
-        />
-        <MovieList
-          title={"Popular"}
-          movies={movies.nowPlayingMovies}
-        />
-        <MovieList
-          title={"Upcoming Movies"}
-          movies={movies.nowPlayingMovies}
-        />
+
+        <MovieList title={"Trending Now"} movies={movies.trendingMovies} />
+        <MovieList title={"Popular"} movies={movies.popularMovies} />
+        <MovieList title={"Upcoming Movies"} movies={movies.upcomingMovies} />
       </div>
     </div>
   );
