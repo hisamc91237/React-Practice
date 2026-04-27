@@ -34,7 +34,7 @@ const HeaderBrowse = () => {
   };
 
   return (
-    <div className="absolute top-0 left-0 z-50 w-full px-8 bg-gradient-to-b from-black to-transparent flex flex-col md:flex-row justify-between items-center">
+    <div className="absolute top-0 left-0 z-50 w-full px-8 bg-linear-to-b from-black to-transparent flex flex-col md:flex-row justify-between items-center">
       <img className="w-44 mx-auto md:mx-0" src={NETFLIX_LOGO} alt="logo" />
       <div className="flex p-2 items-center gap-4">
         <img
