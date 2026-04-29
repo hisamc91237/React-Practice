@@ -66,54 +66,80 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/ba53094c-3e3b-4789-94a6-baac10310f07/web/IN-en-20260420-TRIFECTA-perspective_52edec47-1b88-414a-bbbe-670f7229d886_large.jpg')] bg-cover bg-center h-screen">
-      <div className="absolute inset-0 bg-black/40"></div>
+    <div className="relative min-h-screen bg-gray-950 flex flex-col items-center overflow-hidden">
+      {/* Background Futuristic Glows */}
+      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
       <Header />
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-        className="absolute w-full max-w-md p-12 bg-black/80 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md"
-      >
-        <h1 className="font-bold text-3xl mb-8">
-          {isSignIn ? "Sign In" : "Sign Up"}
-        </h1>
-        {!isSignIn && (
-          <input
-            ref={name}
-            type="text"
-            placeholder="Full Name"
-            className="p-4 my-2 w-full bg-[#333] text-white rounded-sm outline-none focus:ring-2 focus:ring-white/20"
-          />
-        )}
-        <input
-          ref={email}
-          type="text"
-          placeholder="Email or phone number"
-          className="p-4 my-2 w-full bg-[#333] text-white rounded-sm outline-none focus:ring-2 focus:ring-white/20"
-        />
-        <input
-          ref={password}
-          type="password"
-          placeholder="Password"
-          className="p-4 my-2 w-full bg-[#333] text-white rounded-sm outline-none focus:ring-2 focus:ring-white/20"
-        />
-        <p className=" pt-2 text-red-500">{errorMessage}</p>
-        <button
-          className="p-3 mt-5 mb-4 bg-[#e50914] w-full rounded-md font-semibold text-lg transition-colors hover:bg-red-700"
-          onClick={handleFormButtonClick}
+
+      <div className="flex-1 flex items-center justify-center w-full px-4 pt-20">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="w-full max-w-md p-8 md:p-12 bg-white/[0.03] backdrop-blur-3xl border border-white/10 text-white rounded-[2rem] shadow-2xl relative z-10"
         >
-          {isSignIn ? "Sign In" : "Sign Up"}
-        </button>
-        <p
-          className="py-2 text-white hover:underline cursor-pointer"
-          onClick={handleSignIn}
-        >
-          {isSignIn
-            ? "New to Netflix? Sign Up Now"
-            : " Already a user ? Sign In Now "}
-        </p>
-      </form>
+          <h1 className="font-black text-3xl md:text-4xl mb-8 tracking-tight text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+            {isSignIn ? "Sign In" : "Get Started"}
+          </h1>
+
+          {!isSignIn && (
+            <div className="mb-4">
+              <input
+                ref={name}
+                type="text"
+                placeholder="Full Name"
+                className="w-full p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-500/50 focus:ring-4 focus:ring-purple-500/10 transition-all duration-300 placeholder:text-gray-500"
+              />
+            </div>
+          )}
+
+          <div className="mb-4">
+            <input
+              ref={email}
+              type="text"
+              placeholder="Email or phone number"
+              className="w-full p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-500/50 focus:ring-4 focus:ring-purple-500/10 transition-all duration-300 placeholder:text-gray-500"
+            />
+          </div>
+
+          <div className="mb-2">
+            <input
+              ref={password}
+              type="password"
+              placeholder="Password"
+              className="w-full p-4 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-500/50 focus:ring-4 focus:ring-purple-500/10 transition-all duration-300 placeholder:text-gray-500"
+            />
+          </div>
+
+          <p className="min-h-[1.5rem] text-sm text-rose-500 font-medium mb-4 ml-1">
+            {errorMessage}
+          </p>
+
+          <button
+            className="w-full py-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-lg rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.2)] hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all duration-300 active:scale-[0.98]"
+            onClick={handleFormButtonClick}
+          >
+            {isSignIn ? "Enter Cinevia" : "Create Account"}
+          </button>
+
+          <p
+            className="mt-8 text-center text-gray-400 font-medium cursor-pointer hover:text-white transition-colors"
+            onClick={handleSignIn}
+          >
+            {isSignIn ? (
+              <>
+                New to Cinevia?{" "}
+                <span className="text-purple-400 font-bold">Sign Up Now</span>
+              </>
+            ) : (
+              <>
+                Already a member?{" "}
+                <span className="text-purple-400 font-bold">Sign In Here</span>
+              </>
+            )}
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

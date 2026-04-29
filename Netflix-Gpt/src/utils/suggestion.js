@@ -1,8 +1,8 @@
 import OpenAI from "openai";
-import { OPEN_AI_KEY } from "./constants";
+import { SEARCH_KEY } from "./constants";
 
 const suggestion = new OpenAI({
-  apiKey: OPEN_AI_KEY,
+  apiKey: SEARCH_KEY,
   dangerouslyAllowBrowser: true,
 });
 

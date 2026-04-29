@@ -13,16 +13,17 @@ const Secondary = () => {
   if (!movies || !movies.nowPlayingMovies) return null;
 
   return (
-    <div className="bg-black pb-12">
-      <div className="-mt-24 md:-mt-52 relative z-20">
-        <MovieList
-          title={"Now Playing Movies"}
-          movies={movies.nowPlayingMovies}
-        />
-
-        <MovieList title={"Trending Now"} movies={movies.trendingMovies} />
-        <MovieList title={"Popular"} movies={movies.popularMovies} />
-        <MovieList title={"Upcoming Movies"} movies={movies.upcomingMovies} />
+    <div className="bg-gray-950 pb-20">
+      <div className="-mt-12 md:-mt-24 lg:-mt-32 relative z-20 px-4 md:px-8">
+        <div className="flex flex-col gap-6 md:gap-10">
+          <MovieList
+            title={"🔥 Trending Worldwide"}
+            movies={movies.nowPlayingMovies}
+          />
+          <MovieList title={"✨ Curated For You"} movies={movies.trendingMovies} />
+          <MovieList title={"⭐ Top Rated Picks"} movies={movies.popularMovies} />
+          <MovieList title={"📅 Premiere Soon"} movies={movies.upcomingMovies} />
+        </div>
       </div>
     </div>
   );
