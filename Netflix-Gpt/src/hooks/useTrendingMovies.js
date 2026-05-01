@@ -11,7 +11,7 @@ const useTrendingMovies = () => {
 
   const getTrendingMovies = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/top_rated?page=2",
+      "/api/movies?path=/movie/top_rated?page=2",
       API_OPTIONS,
     );
     const json = await data.json();

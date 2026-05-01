@@ -8,10 +8,11 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: "Bearer " + import.meta.env.VITE_TMDB_KEY,
   },
 };
 
 export const POSTER_IMG = "https://image.tmdb.org/t/p/w500";
 
-export const SEARCH_KEY = import.meta.env.VITE_NVIDIA_KEY;
+// Keys are now secured in the backend /api directory.
+// No sensitive keys should be exported here.
+export const SEARCH_KEY = "SECURE_ON_BACKEND";
