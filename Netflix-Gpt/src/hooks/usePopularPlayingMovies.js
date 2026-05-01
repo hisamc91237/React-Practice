@@ -11,7 +11,7 @@ const usePopularPlayingMovies = () => {
 
   const getPopularMovies = async () => {
     const data = await fetch(
-      "/api/movies?path=/movie/popular?page=1",
+      "/api/movies?path=" + encodeURIComponent("/movie/popular?page=1"),
       API_OPTIONS,
     );
     const json = await data.json();

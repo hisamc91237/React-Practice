@@ -4,7 +4,9 @@ import VideoBackground from "./VideoBackground";
 
 const Hero = () => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
-  if (movies === null) return;
+  
+  if (!movies || movies.length === 0) return null;
+  
   const mainMovie = movies[0];
   const { original_title, overview, id } = mainMovie;
 

@@ -11,9 +11,12 @@ const GPTSearchbar = () => {
 
   const searchMovieTMBD = async (movienName) => {
     const data = await fetch(
-      "/api/movies?path=/search/movie?query=" +
-        movienName +
-        "&include_adult=false&language=en-US&page=1",
+      "/api/movies?path=" +
+        encodeURIComponent(
+          "/search/movie?query=" +
+            movienName +
+            "&include_adult=false&language=en-US&page=1",
+        ),
       API_OPTIONS,
     );
     const json = await data.json();
@@ -83,11 +86,27 @@ const GPTSearchbar = () => {
         <button
           type="submit"
           disabled={loading}
-          className="px-8 md:px-12 py-4 md:py-0 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black rounded-xl cursor-pointer disabled:opacity-50 transition-all duration-300 shadow-lg hover:shadow-purple-500/40 uppercase tracking-widest text-xs md:text-sm"
+          className="relative px-8 md:px-12 py-4 md:py-0 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black rounded-xl cursor-pointer disabled:opacity-80 transition-all duration-300 shadow-lg hover:shadow-purple-500/40 uppercase tracking-widest text-xs md:text-sm overflow-hidden group"
         >
-          {loading ? "Analyzing..." : "Discover"}
+          {loading ? (
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              <span className="animate-pulse">Thinking...</span>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center gap-2">
+              <span>Discover</span>
+              <i className="fa-solid fa-sparkles text-[10px] group-hover:animate-bounce"></i>
+            </div>
+          )}
         </button>
       </form>
+      {loading && (
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-purple-400/80 text-sm font-medium animate-pulse flex items-center gap-2">
+          <i className="fa-solid fa-brain text-[10px]"></i>
+          <span>Cinevia AI is analyzing your request...</span>
+        </div>
+      )}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const useUpcomingMovies = () => {
 
   const getUpcomingMovies = async () => {
     const data = await fetch(
-      "/api/movies?path=/movie/upcoming?page=1",
+      "/api/movies?path=" + encodeURIComponent("/movie/upcoming?page=1"),
       API_OPTIONS,
     );
     const json = await data.json();
