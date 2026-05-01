@@ -32,9 +32,9 @@ const GPTSearchbar = () => {
     setLoading(true);
     try {
       const gptQuery =
-        "Act as a Movie Recommendation system. Please suggest me 5 movies based on this: " +
+        "Suggest 5 movie names based on: " +
         text +
-        " Only give the movies name. Separate each movie with commas. Indian Movies Please. Example: RRR,Baahubali,KGF,Pushpa,Vikram";
+        ". Response format: Movie1, Movie2, Movie3, Movie4, Movie5. No extra text.";
 
       const MOCK_MODE = false;
 
@@ -44,6 +44,8 @@ const GPTSearchbar = () => {
             await suggestion.chat.completions.create({
               model: "meta/llama-3.1-8b-instruct",
               messages: [{ role: "user", content: gptQuery }],
+              max_tokens: 100,
+              temperature: 0.1,
             })
           ).choices[0].message.content;
 
