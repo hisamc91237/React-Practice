@@ -2,7 +2,7 @@ import HeaderBrowse from "./HeaderBrowse";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import Hero from "./Hero";
 import Secondary from "./Secondary";
-import usePopularPlayingMovies from "../hooks/usePOPULARPlayingMovies";
+import usePopularPlayingMovies from "../hooks/usePopularPlayingMovies";
 import useTrendingMovies from "../hooks/useTrendingMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import GPTSearch from "./GPTSearch";
