@@ -1,27 +1,44 @@
-export default async function handler(req, res) {
+export const config = {
+  runtime: "edge",
+};
+
+export default async function handler(req) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   const NVIDIA_KEY = process.env.NVIDIA_KEY;
 
   if (!NVIDIA_KEY) {
-    return res.status(500).json({ error: "NVIDIA_KEY not configured on server" });
+    return new Response(JSON.stringify({ error: "NVIDIA_KEY missing" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   try {
+    const body = await req.json();
     const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${NVIDIA_KEY}`,
+        Authorization: `Bearer ${NVIDIA_KEY.trim()}`,
       },
-      body: JSON.stringify(req.body),
+      body: JSON.stringify(body),
     });
 
     const data = await response.json();
-    res.status(200).json(data);
+    return new Response(JSON.stringify(data), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch from NVIDIA" });
+    return new Response(JSON.stringify({ error: "Failed to connect to NVIDIA" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
