@@ -14,9 +14,7 @@ dist-ssr
 .claude
 .firebase
 *.local
-src/utils/firebase.js
 .env
-constants.js
 
 # Editor directories and files
 .vscode/*
