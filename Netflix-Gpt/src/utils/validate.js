@@ -9,12 +9,9 @@ export const validateData = (email, password, name) => {
 
   const isNameValid = /^[a-zA-Z ]{2,30}$/.test(name);
 
-  if (!isEmailValid) return "Email ID is not valid";
-
-  if (!isPasswordValid)
-    return "Password is not Valid. It must have one Uppercase, one Lowercase , one Special charatcter and 8 characters ";
-
-  if (!isNameValid) return "Name is not valid";
+  if (!isEmailValid) return "Please enter a valid email address.";
+  if (!isPasswordValid) return "Password must be at least 8 characters with a mix of letters and numbers.";
+  if (!isNameValid) return "Please enter a valid name (2-30 characters).";
 
   return null;
 };
